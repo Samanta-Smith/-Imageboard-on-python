@@ -1,0 +1,43 @@
+body {
+    background-color: #000000;
+    text: #008000;
+}
+
+#content {left: 170px;}
+.post{
+
+     min-width: 50%;
+     display: inline-block;
+     border: 1px solid green;
+     padding: 3px;
+     margin :1px;
+     color:  #008000;
+}
+.comment{
+    margin: 2px 0px 0px 50px;
+    min-width: 50%;
+    display: inline-block;
+    border: 1px solid green;
+    padding: 3px;
+    color:  #008000;
+}
+
+
+    .leftimg {
+     float:left; /* Выравнивание по левому краю */
+     margin: 5px 5px 5px 0; /* Отступы вокруг картинки */
+    }
+#button {
+        position: relative;
+        left: 990px;
+        top: -5px
+    }
+
+.forms {
+        position: relative;
+        left: 700px;
+        top: 40px
+    }
+.forms{
+color:  #008000;
+}

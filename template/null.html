@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <title>Shodan Chan</title>
+</head>
+
+
+<body>
+
+    <center>
+        <img src="{% static "images/general.png"  %}">
+    </center>
+    <hr>
+    <form method="POST" action="create/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="forms">
+            {{ form.as_p }}
+        </div>
+        <div id="button"><input type="submit" value="Отправить" name="submit">
+        </div>
+    </form>
+    <hr>
+    {% for post in posts %}
+
+    <div class="post">
+
+        <p>
+            <pre> Аноним {{post.pub_date}} <a name={{post.pk}} > №{{post.pk}}</a><a href="/thread/{{post.pk}}/" >[Ответ]</a></pre>
+        </p>
+
+        {% load thumbnail %}
+        {% thumbnail post.image_d "200" as im %}
+        <a href="{{ post.image_d.url}}">
+            <img src={{im.url}} class="leftimg">
+        </a>
+        {% endthumbnail %}
+        <h3>{{post.name_d}} </h3>
+        <div>
+            <p>{{post.text_d}}</p>
+        </div>
+
+    </div>
+    {% for comment in post.comments.all.reverse|slice:":3"|dictsort:"pub_date" %}
+
+    <div class="comment">
+        <p>
+            <pre>Аноним {{comment.pub_date}}  <a name={{comment.pk}} >  №{{comment.pk}}</a></pre>
+        </p>
+
+
+
+        {% if comment.image_d %}
+        {% load thumbnail %}
+        {% thumbnail comment.image_d "200" as im %}
+        <a href="{{ comment.image_d.url}}">
+            <img src={{im.url}} class="leftimg">
+        </a>
+        {% endthumbnail %}
+        {% endif %}
+        <p>{{comment.text_d}}</p>
+
+    </div>
+    {% endfor %}
+    {% endfor %}
+
+</body>
